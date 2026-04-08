@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astara Intelligence | Market Entry Webapp</title>
+  <meta
+    name="description"
+    content="Portada web para los informes de entrada de mercado de Astara Intelligence en Bogotá y Lima."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg: #06131f;
+      --bg-soft: #0c2238;
+      --panel: rgba(10, 31, 49, 0.78);
+      --panel-strong: rgba(16, 43, 70, 0.92);
+      --line: rgba(146, 204, 255, 0.2);
+      --text: #f4f7fb;
+      --text-soft: #c8d6e5;
+      --muted: #8ea6bf;
+      --accent: #8cc8ff;
+      --accent-2: #62b4ff;
+      --green: #60e2a1;
+      --amber: #ffcb66;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      --radius: 28px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Space Grotesk", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(98, 180, 255, 0.18), transparent 20%),
+        radial-gradient(circle at 88% 18%, rgba(96, 226, 161, 0.12), transparent 18%),
+        linear-gradient(180deg, #06131f 0%, #0a1b2d 48%, #06131f 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      color: var(--text-soft);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      border: 1px solid rgba(140, 200, 255, 0.28);
+      background: linear-gradient(180deg, rgba(140, 200, 255, 0.22), rgba(140, 200, 255, 0.06));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(243, 247, 251, 0.94);
+    }
+
+    .brand-mark::before {
+      top: 11px;
+      width: 18px;
+    }
+
+    .brand-mark::after {
+      top: 21px;
+      width: 12px;
+    }
+
+    .surface {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(11, 31, 54, 0.94), rgba(7, 21, 37, 0.88));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      animation: rise 0.7s ease both;
+    }
+
+    .surface::before {
+      content: "";
+      position: absolute;
+      inset: auto -12% 68% 38%;
+      height: 220px;
+      background: radial-gradient(circle, rgba(98, 180, 255, 0.2), transparent 62%);
+      pointer-events: none;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(12, 34, 56, 0.74);
+      border: 1px solid rgba(140, 200, 255, 0.18);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 0 5px rgba(96, 226, 161, 0.12);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin-bottom: 14px;
+      font-family: "Instrument Serif", Georgia, serif;
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      font-weight: 400;
+    }
+
+    .lead {
+      max-width: 720px;
+      color: var(--text-soft);
+      font-size: clamp(17px, 2vw, 22px);
+      line-height: 1.5;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7, 21, 37, 0.52);
+      border: 1px solid rgba(140, 200, 255, 0.14);
+    }
+
+    .mini strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+    }
+
+    .mini p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .summary-panel {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(15, 42, 67, 0.9), rgba(11, 31, 54, 0.9)),
+        radial-gradient(circle at top right, rgba(255, 203, 102, 0.12), transparent 26%);
+      border: 1px solid rgba(140, 200, 255, 0.18);
+    }
+
+    .summary-panel h2 {
+      margin-bottom: 0;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-soft);
+    }
+
+    .stat-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(7, 21, 37, 0.48);
+      border: 1px solid rgba(140, 200, 255, 0.14);
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .reports {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .report-card {
+      position: relative;
+      overflow: hidden;
+      padding: 24px;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(11, 31, 54, 0.9), rgba(16, 43, 70, 0.82));
+      border: 1px solid rgba(140, 200, 255, 0.16);
+      box-shadow: var(--shadow);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+      animation: rise 0.8s ease both;
+    }
+
+    .report-card:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .report-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(140, 200, 255, 0.34);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34);
+    }
+
+    .report-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -24% auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(98, 180, 255, 0.12), transparent 62%);
+      pointer-events: none;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(7, 21, 37, 0.6);
+      border: 1px solid rgba(140, 200, 255, 0.16);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .card-tag::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.75;
+    }
+
+    .report-card h3 {
+      margin-bottom: 10px;
+      font-size: 30px;
+      line-height: 1.04;
+    }
+
+    .report-card p {
+      color: var(--text-soft);
+      font-size: 15px;
+    }
+
+    .highlights {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .highlight {
+      padding-left: 18px;
+      position: relative;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .highlight::before {
+      content: "";
+      position: absolute;
+      top: 0.6em;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .highlight span {
+      color: var(--text-soft);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      color: #071525;
+    }
+
+    .button.secondary {
+      background: rgba(7, 21, 37, 0.56);
+      border: 1px solid rgba(140, 200, 255, 0.16);
+      color: var(--text);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 20px;
+      margin-top: 22px;
+    }
+
+    .meta-card {
+      padding: 24px;
+      border-radius: var(--radius);
+      background: var(--panel);
+      border: 1px solid rgba(140, 200, 255, 0.16);
+      box-shadow: var(--shadow);
+    }
+
+    .meta-card h2 {
+      margin-bottom: 10px;
+      font-size: 28px;
+      line-height: 1.08;
+    }
+
+    .meta-card p {
+      color: var(--text-soft);
+    }
+
+    .compare {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .compare-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid rgba(140, 200, 255, 0.12);
+    }
+
+    .compare-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .compare-row strong {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+    }
+
+    .compare-row span {
+      color: var(--text-soft);
+    }
+
+    .footer {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .reports,
+      .meta-grid,
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .surface,
+      .report-card,
+      .meta-card {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(var(--max), calc(100% - 20px));
+        padding-top: 16px;
+      }
+
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      h1 {
+        font-size: clamp(42px, 14vw, 64px);
+      }
+
+      .compare-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <span aria-hidden="true" class="brand-mark"></span>
+        <span>Astara Intelligence · Market Entry Webapp</span>
+      </div>
+      <div>Despliegue estático listo para Vercel</div>
+    </div>
+
+    <section class="surface">
+      <div class="hero">
+        <div class="hero-copy">
+          <div>
+            <div class="eyebrow">Informes conectados, una sola entrada web</div>
+            <h1>Convertimos los HTML en una webapp ligera y desplegable.</h1>
+            <p class="lead">
+              En lugar de rehacer estos documentos en un framework, la app ahora funciona como un sitio
+              estático con portada, navegación clara y rutas limpias para cada informe. Es la forma más
+              rápida de publicar y mantener lo que ya tienes.
+            </p>
+          </div>
+
+          <div class="hero-points">
+            <div class="mini">
+              <strong>Qué gana</strong>
+              <p>Una home común, enlaces consistentes y despliegue simple sin proceso de build.</p>
+            </div>
+            <div class="mini">
+              <strong>Cómo se sirve</strong>
+              <p>Como sitio estático: ideal para Vercel, rápido de abrir y fácil de compartir.</p>
+            </div>
+            <div class="mini">
+              <strong>Qué sigue</strong>
+              <p>Si más adelante quieres, podemos migrarlo a Next.js sin perder esta estructura.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="summary-panel">
+          <h2>Resumen de la app</h2>
+          <div class="stat-list">
+            <div class="stat">
+              <strong>2</strong>
+              <span>informes integrados como rutas independientes</span>
+            </div>
+            <div class="stat">
+              <strong>/bogota</strong>
+              <span>entrada directa al análisis de oportunidad inmediata</span>
+            </div>
+            <div class="stat">
+              <strong>/lima</strong>
+              <span>entrada directa al análisis de encaje estructural</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="reports" aria-label="Informes disponibles">
+      <a class="report-card" href="./bogota_astara_market_entry_siglas_definidas.html">
+        <span class="card-tag" style="color: var(--green);">Bogotá</span>
+        <h3>Oportunidad inmediata y lógica comercial clara</h3>
+        <p>
+          Informe centrado en una entrada más accionable, con foco en interoperabilidad, despliegue y
+          lectura de proyectos en marcha.
+        </p>
+        <div class="highlights">
+          <div class="highlight"><strong>Activación</strong> <span>Más inmediata desde una lógica comercial y operativa.</span></div>
+          <div class="highlight"><strong>Lectura</strong> <span>Ciudad con transformación visible, presión sistémica y puertas claras.</span></div>
+          <div class="highlight"><strong>Uso</strong> <span>Adecuado para conversaciones de priorización a corto plazo.</span></div>
+        </div>
+        <div class="actions">
+          <span class="button primary">Abrir informe Bogotá</span>
+        </div>
+      </a>
+
+      <a class="report-card" href="./lima_astara_market_entry_siglas_definidas.html">
+        <span class="card-tag" style="color: var(--amber);">Lima</span>
+        <h3>Encaje estratégico alto con entrada más selectiva</h3>
+        <p>
+          Informe orientado a integración de sistema, recaudo, conformidad y analítica para apoyar una
+          entrada más estructural.
+        </p>
+        <div class="highlights">
+          <div class="highlight"><strong>Encaje</strong> <span>Muy alto si Astara entra desde lógica de sistema e integración.</span></div>
+          <div class="highlight"><strong>Ritmo</strong> <span>Menos inmediato, pero con una tesis de fondo muy sólida.</span></div>
+          <div class="highlight"><strong>Uso</strong> <span>Adecuado para validar hipótesis y preparar conversaciones de medio plazo.</span></div>
+        </div>
+        <div class="actions">
+          <span class="button primary">Abrir informe Lima</span>
+        </div>
+      </a>
+    </section>
+
+    <section class="meta-grid">
+      <div class="meta-card">
+        <h2>Cómo leer ambos informes juntos</h2>
+        <p>
+          La home deja clara la diferencia entre mercados: Bogotá aparece como vía de entrada más inmediata,
+          mientras Lima destaca por encaje estructural y tesis de sistema. La combinación funciona bien como
+          una mini webapp interna para exploración y toma de decisión.
+        </p>
+        <div class="compare">
+          <div class="compare-row">
+            <strong>Bogotá</strong>
+            <span>Más cerca de una oportunidad accionable y comercializable en el corto plazo.</span>
+          </div>
+          <div class="compare-row">
+            <strong>Lima</strong>
+            <span>Más interesante cuando la conversación gira en torno a integración, recaudo y gobernanza.</span>
+          </div>
+          <div class="compare-row">
+            <strong>Conjunto</strong>
+            <span>La webapp sirve como punto único de acceso para revisar, compartir y desplegar ambos análisis.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="meta-card">
+        <h2>Despliegue</h2>
+        <p>
+          Esta estructura ya es compatible con despliegue estático en Vercel. Los enlaces internos funcionan
+          directamente con los HTML reales y `vercel.json` añade alias limpios para compartir como `/bogota`
+          y `/lima`, sin necesidad de React, Next.js ni un bundler.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="./bogota_astara_market_entry_siglas_definidas.html">Probar Bogotá</a>
+          <a class="button secondary" href="./lima_astara_market_entry_siglas_definidas.html">Probar Lima</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Astara Intelligence · navegación unificada para informes internos de entrada de mercado
+    </div>
+  </div>
+</body>
+</html>
