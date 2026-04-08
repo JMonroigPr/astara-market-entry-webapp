@@ -1,14 +1,26 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/bogota",
-      "destination": "/bogota_astara_market_entry_siglas_definidas"
+      "source": "/bogota_astara_market_entry_siglas_definidas",
+      "destination": "/bogota",
+      "permanent": true
     },
     {
-      "source": "/lima",
-      "destination": "/lima_astara_market_entry_siglas_definidas"
+      "source": "/bogota_astara_market_entry_siglas_definidas.html",
+      "destination": "/bogota",
+      "permanent": true
+    },
+    {
+      "source": "/lima_astara_market_entry_siglas_definidas",
+      "destination": "/lima",
+      "permanent": true
+    },
+    {
+      "source": "/lima_astara_market_entry_siglas_definidas.html",
+      "destination": "/lima",
+      "permanent": true
     }
   ],
   "headers": [

@@ -5,8 +5,8 @@ Este proyecto ahora funciona como una webapp estática basada en los HTML origin
 ## Rutas
 
 - `/` portada de la app
-- `/bogota` alias limpio en Vercel para el informe de Bogotá
-- `/lima` alias limpio en Vercel para el informe de Lima
+- `/bogota` informe de Bogotá
+- `/lima` informe de Lima
 
 ## Vista local
 
@@ -19,12 +19,12 @@ python3 -m http.server 8000
 Luego abre:
 
 - `http://localhost:8000/`
-- `http://localhost:8000/bogota_astara_market_entry_siglas_definidas.html`
-- `http://localhost:8000/lima_astara_market_entry_siglas_definidas.html`
+- `http://localhost:8000/bogota.html`
+- `http://localhost:8000/lima.html`
 
 ## Despliegue en Vercel
 
-La configuración está en `vercel.json` y usa `cleanUrls` más `rewrites` para exponer alias limpios sin necesitar framework ni build step.
+La configuración está en `vercel.json` y usa `cleanUrls` para exponer las rutas `/bogota` y `/lima`, además de redirigir automáticamente las URLs largas antiguas.
 
 ## Publicarlo ahora
 
