@@ -91,6 +91,21 @@
     .brand-mark::before { width: 18px; height: 4px; top: 11px; left: 10px; }
     .brand-mark::after  { width: 12px; height: 4px; top: 20px; left: 13px; }
 
+    .brand-home {
+      display: block;
+      border-radius: 12px;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .brand-home:hover {
+      transform: translateY(-1px);
+    }
+
+    .brand-home:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(140,200,255,.22);
+    }
+
     .meta-pills {
       display: flex;
       flex-wrap: wrap;
@@ -865,7 +880,7 @@
 <div class="shell">
 <div class="topbar">
 <div class="brand">
-<span aria-hidden="true" class="brand-mark"></span>
+<a aria-label="Volver a la portada" class="brand-home" href="/" title="Volver a la portada"><span aria-hidden="true" class="brand-mark"></span></a>
 <span>Astara Intelligence | Advisory · Bogotá</span>
 </div>
 </div>

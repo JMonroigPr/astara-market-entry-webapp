@@ -94,6 +94,21 @@
     .brand-mark::before { top:12px; }
     .brand-mark::after { top:22px; width:14px; right:auto; }
 
+    .brand-home {
+      display:block;
+      border-radius:14px;
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .brand-home:hover {
+      transform:translateY(-1px);
+    }
+
+    .brand-home:focus-visible {
+      outline:none;
+      box-shadow:0 0 0 3px rgba(140,200,255,.22);
+    }
+
     .status {
       display:flex;
       flex-wrap:wrap;
@@ -932,7 +947,7 @@
 <div class="shell">
 <div class="topbar">
 <div class="brand">
-<div aria-hidden="true" class="brand-mark"></div>
+<a aria-label="Volver a la portada" class="brand-home" href="/" title="Volver a la portada"><div aria-hidden="true" class="brand-mark"></div></a>
 <div>Astara Intelligence | Advisory · Lima</div>
 </div>
 </div>
